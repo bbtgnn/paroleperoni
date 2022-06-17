@@ -1,6 +1,7 @@
 <script lang="ts">
 	import json from '$lib/labels-list.json';
 	import { assets } from '$app/paths';
+	import Lazy from 'svelte-lazy';
 
 	const labelNames: Array<string> = json;
 	const labels: Array<{ word: string; file: string }> = [];
@@ -26,7 +27,9 @@
 >
 	{#each labels as label}
 		<div class="flex flex-col flex-nowrap justify-between border-2 border-gray-300">
-			<img src="{assets}/{label.file}" alt="" />
+			<Lazy height={240}>
+				<img class="flex h-60" src="{assets}/{label.file}" alt="" />
+			</Lazy>
 			<p class="bg-gray-300 font-mono p-2 text-center">{label.word}</p>
 		</div>
 	{/each}
