@@ -1,6 +1,8 @@
 <script lang="ts">
 	import json from '$lib/labels-list.json';
 	import { assets } from '$app/paths';
+	import IntersectionObserver from '$lib/components/IntersectionObserver.svelte';
+	import Image from '$lib/components/Image.svelte';
 
 	const labelNames: Array<string> = json;
 	const labels: Array<{ word: string; file: string }> = [];
@@ -16,7 +18,7 @@
 <!--  -->
 
 <!-- Navbar -->
-<nav class="sticky top-0 flex bg-red-800 border-b-2 border-white">
+<nav class="sticky top-0 flex bg-red-800 border-b-2 border-white z-50">
 	<div class="px-4 py-2 container mx-auto font-mono text-white">paroleperoni</div>
 </nav>
 
@@ -26,7 +28,13 @@
 >
 	{#each labels as label}
 		<div class="flex flex-col flex-nowrap justify-between border-2 border-gray-300">
-			<img src="{assets}/{label.file}" alt="" />
+			<IntersectionObserver once={true} let:intersecting>
+				{#if intersecting}
+					<div class="w-full h-full flex flex-row flex-nowrap justify-center">
+						<Image src={`${assets}/${label.file}`} alt={label.word} />
+					</div>
+				{/if}
+			</IntersectionObserver>
 			<p class="bg-gray-300 font-mono p-2 text-center">{label.word}</p>
 		</div>
 	{/each}
