@@ -3,7 +3,7 @@
 	import json from '$lib/labels-list.json';
 	import { assets } from '$app/paths';
 
-	import IntersectionObserver from '$lib/components/IntersectionObserver.svelte';
+	// import IntersectionObserver from '$lib/components/IntersectionObserver.svelte';
 	import Image from '$lib/components/Image.svelte';
 	import Navbar from '$lib/components/navbar.svelte';
 
@@ -52,7 +52,7 @@
 				{#each labels as label}
 					<div class="flex flex-col flex-nowrap justify-between">
 						<div class="p-4 flex flex-row justify-center items-center h-60">
-							<img class="h-full" src={`${assets}/${label.file}`} alt={label.word} loading="lazy" />
+							<Image classes="h-full" src={`${assets}/${label.file}`} alt={label.word} />
 						</div>
 						<!-- <IntersectionObserver once={true} let:intersecting>
 									{#if intersecting}
