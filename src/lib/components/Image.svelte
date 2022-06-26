@@ -33,5 +33,5 @@
 {:else if failed}
 	<p class="font-mono text-gray-400">Image not found</p>
 {:else if loading}
-	<Spinner color="#cbd5e1" borderRadius={5} />
+	<Spinner color="#cbd5e1" borderRadius={2} />
 {/if}
