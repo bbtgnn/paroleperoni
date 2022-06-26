@@ -23,7 +23,7 @@
 	<!-- Letters -->
 	<div class="space-x-1 flex flex-row flex-nowrap items-center justify-center">
 		{#each letters as letter}
-			<NavbarButton {letter} {currentLetter} />
+			<NavbarButton {letter} active={letter == currentLetter} />
 		{/each}
 	</div>
 
