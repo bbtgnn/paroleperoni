@@ -27,58 +27,58 @@
 
 <!--  -->
 
-<!-- Navbar -->
-<nav
-	class="
-		px-4 py-2 space-x-1
-		sticky top-0
-		flex flex-nowrap justify-center items-baseline
-		bg-red-800
-		border-b-2 border-white
-		z-50"
->
-	<p class="font-mono text-white mr-1">PAROLE</p>
-	{#each peroni as letter}
-		<a
-			class="
-				bg-red-600 w-10 h-10
-				flex flex-row flex-nowrap items-center justify-center
-				rounded-lg
-			"
-			href="#{letter}"
-		>
-			<p class="font-mono text-white">{letter.toUpperCase()}</p>
-		</a>
-	{/each}
-</nav>
-
-<!-- Content -->
 <div
-	class="container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 items-stretch"
+	class="container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 pb-8 pt-0 items-stretch"
 >
 	{#each peroni as letter}
 		<!-- Getting letter group -->
 		{@const labels = groups[letter]}
 
-		<!-- Section title -->
-		<h1
-			class="col-span-full self-start capital text-xl font-mono p-3 bg-gray-400 z-40 mt-16"
-			id={letter}
+		<div id={letter} class="col-span-full h-1 mb-[-1rem]" />
+		<div
+			class="
+				mt-[-1rem]
+				py-2 space-x-4 col-span-full bg-white
+				flex flex-row flex-nowrap items-center justify-center
+				self-start sticky top-0"
 		>
-			{letter.toUpperCase()}
-		</h1>
+			<hr class="border-[1px] border-red-600 grow" />
+			<div class="space-x-1 flex flex-row flex-nowrap items-center justify-center">
+				{#each peroni as letterIndex}
+					<a
+						href="#{letterIndex}"
+						class="
+					 w-10 h-10 rounded-lg
+					flex flex-row flex-nowrap items-center justify-center
+					{letter == letterIndex ? 'bg-red-600' : 'border-2 border-red-600'}
+				"
+					>
+						<p
+							class="
+						font-mono 
+						{letter == letterIndex ? 'text-white' : 'text-red-600'}
+					"
+						>
+							{letterIndex.toUpperCase()}
+						</p>
+					</a>
+				{/each}
+			</div>
+			<hr class="border-[1px] border-red-600 grow" />
+		</div>
 
 		<!-- Drawing labels -->
 		{#if labels}
 			{#each labels as label}
 				<div class="flex flex-col flex-nowrap justify-between">
-					<IntersectionObserver once={true} let:intersecting>
-						{#if intersecting}
-							<div class="w-full h-full flex flex-row flex-nowrap justify-center p-4">
+					<div class="p-4 flex flex-row justify-center items-center">
+						<img class="h-60" src={`${assets}/${label.file}`} alt={label.word} loading="lazy" />
+					</div>
+					<!-- <IntersectionObserver once={true} let:intersecting>
+									{#if intersecting}
 								<Image src={`${assets}/${label.file}`} alt={label.word} />
-							</div>
-						{/if}
-					</IntersectionObserver>
+								{/if}
+							</IntersectionObserver> -->
 					<p class="bg-gray-200 font-mono p-2 text-center">{label.word}</p>
 				</div>
 			{/each}
