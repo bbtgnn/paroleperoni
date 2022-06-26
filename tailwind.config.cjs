@@ -2,7 +2,14 @@
 module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
-		extend: {}
+		extend: {
+			colors: {
+				peroni: {
+					600: '#b41232',
+					100: '#e6cdce'
+				}
+			}
+		}
 	},
 	plugins: []
 };
